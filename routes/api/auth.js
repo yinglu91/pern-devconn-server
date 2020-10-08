@@ -112,7 +112,11 @@ router.post(
     ]);
 
     if (user.rows.length === 0) {
-      return res.status(401).json("Invalid Credential");
+      return res.status(401).json([
+          {
+            msg: 'Invalid Credential',
+          },
+        ]);
     }
 
       const isMatch = await bcrypt.compare(password, user.rows[0].password);
@@ -177,6 +181,7 @@ response body
 token's payload
 {
   "user": {
+    
     "id": 4,
     "name": "test3",
     "email": "test3@gmail.com"
